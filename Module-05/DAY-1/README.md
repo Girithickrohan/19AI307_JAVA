@@ -1,47 +1,65 @@
-# Ex.No:5(A)  DATA HIDING AND ENCAPSULATION
+# Ex.No:5(A) INPUTSTREAMREADER 
+
+## QUESTION:
+Write a program to write an array of strings into a file using PrintWriter.
+
 ## AIM:
-To Create a java program to display name and location of the employee and use the encapsulation concepts
+To write the contents of an array of strings into a text file using the PrintWriter class in Java.
 
 ## ALGORITHM :
-1.  Start the program
-2.	Define class `Employee`:
--	a) Declare two private `String` variables: `name1` and `name2`
--	b) Define `setname(String n1)` method to set `name1` to `n1`
--	c) Define `setname2(String n2)` method to set `name2` to `n2`
--	d) Define `get1()` method to return `name1`
--	e) Define `get2()` method to return `name2`
-3.	Define `Main` class with `main` method:
--	a) Create `Scanner` object `sc` for input
--	b) Read `name1` and `name2` from user input
--	c) Create ` Employee ` object `hl`
--	d) Use `hl.setname(name1)` and `hl.setname2(name2)` to set the names
--	e) Print the values of `hl.get1()` and `hl.get2()`
-4.	End
+1.Start the program.
 
+2.Create an array of strings.
 
+3.Create a PrintWriter object using FileWriter to open/create the output file.
 
+4.Traverse the array using a loop.
 
+5.Write each string from the array into the file using println().
 
+6.Close the PrintWriter object.
+
+7.Display a success message.
+
+8.Handle any exceptions that may occur during file operations.
+
+9.Stop the program.
 ## PROGRAM:
  ```
 /*
-Program to implement a Data Hiding & Encapsulation using Java
-Developed by: 
-RegisterNumber:  
+Program to implement a InputStreamReader using Java
+Developed by: GIRITHICK ROHAN N
+RegisterNumber: 212223230063
 */
 ```
 
-## Sourcecode.java:
+## SOURCE CODE:
+```
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
+public class Main {
+    public static void main(String[] args) {
+        String[] arr = {"welcome"};
 
+        try {
+            PrintWriter pw = new PrintWriter(new FileWriter("output.txt"));
 
+            for (String s : arr) {
+                pw.println(s);
+            }
 
-
-
+            pw.close();
+            System.out.println("Array of strings written to file successfully.");
+        } catch (Exception e) {
+            System.out.println("Error writing to file.");
+        }
+    }
+}
+```
 
 ## OUTPUT:
-
-
+<img width="1200" height="266" alt="image" src="https://github.com/user-attachments/assets/50c45a93-aaf9-4925-9ce7-73c3132ee4b0" />
 
 ## RESULT:
-Thus , the  java program to display name and location of the employee and use the encapsulation concepts executed successfully.
+Array of strings written to file successfully.
