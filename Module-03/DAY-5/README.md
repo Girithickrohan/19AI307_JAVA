@@ -11,28 +11,44 @@ To write a Java program that creates a StringBuilder object using a given string
 5.	Print the contents of sb to verify the output.
 6.	End the program.
 
-
 ## PROGRAM:
  ```
 /*
-Program to implement a StringBuilder Object Reference in Java
-Developed by: 
-RegisterNumber:  
+Program to implement a Wrapper Class using Java
+Developed by: GIRITHICK ROHAN N
+RegisterNumber: 212223230063
 */
 ```
 
-## Sourcecode.java:
+## SOURCE CODE:
+```
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String str1 = scanner.next();
+
+        String str2 = scanner.next();
+
+        scanner.close();
+
+        try {
+            int num1 = Integer.parseInt(str1);
+            int num2 = Integer.parseInt(str2);
 
 
-
-
-
-
-
+            int sum = num1 + num2;
+            System.out.println("Sum = " + sum);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+        }
+    }
+}
+```
 ## OUTPUT:
-
-
+<img width="1223" height="414" alt="image" src="https://github.com/user-attachments/assets/899591cc-4837-4c4d-9693-94fdcade6361" />
 
 ## RESULT:
-Thus the  Java program successfully creates a StringBuilder object using the given string and stores the reference in the variable sb. The contents of the object are printed using the reference variable.
-
+The program successfully converts strings to integers and displays their sum.
