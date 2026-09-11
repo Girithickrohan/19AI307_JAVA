@@ -1,41 +1,53 @@
-# Ex.No:4(A)  JAVA CONSTRUCTOR
+# Ex.No:4(A) EXCEPTION HANDLING
+
+## QUESTION:
+You wrote a program that stores some input strings into a String array and prints each string in uppercase.
+However, you're getting a NullPointerException.
+What should you check in your array before calling .toUpperCase() on a element?
+
 ## AIM:
-To create a Java program using constructor to print the circumference of rectangle.[l=5,w=6]
+To handle a NullPointerException when performing operations on a null string in Java.
 
 ## ALGORITHM :
-1.  1.	Start the Program.
-2.	Define a class `circum`
-3.	Inside the class, define two integer variables `l` and `w` with values 5 and 6, respectively
-4.	Create a constructor `circum()`:
--	a) Calculate the `circumference` as `2 * (l + w)`
--	b) Print the `circumference` twice with different labels ("Area of First Rectangle" and "Area of Second Rectangle")
-5.	In `main`, create an object `sc` of the `circum` class
-6.	End
-
-
-
-
+1.	Read a string input from the user.
+2.	If the input is "null", assign null to the variable.
+3.	Try converting the string to uppercase using toUpperCase().
+4.	Catch and handle the NullPointerException if the string is null.
+5.	Print "Null element" in case of exception.
 
 ## PROGRAM:
  ```
 /*
-Program to implement a Constructor using Java
-Developed by: 
-RegisterNumber:  
+Program to implement a Exception Handling using Java
+Developed by: GIRITHICK ROHAN N
+RegisterNumber: 212223230063
 */
 ```
 
-## Sourcecode.java:
+## SOURCE CODE:
+```
+import java.util.Scanner;
 
+public class NullPointerArrayExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
+        String input = sc.next();
+        String str = input.equalsIgnoreCase("null") ? null : input;
 
+        try {
+            System.out.println(str.toUpperCase());
+        } catch (NullPointerException e) {
+            System.out.println("Null element");
+        }
 
-
-
+        sc.close();
+    }
+}
+```
 
 ## OUTPUT:
-
-
+<img width="1266" height="354" alt="image" src="https://github.com/user-attachments/assets/ca3d287f-7bcc-4852-9515-a3ff25df30a1" />
 
 ## RESULT:
-Thus the Java program using constructor to print the circumference of rectangle was executed successfully.
+The program successfully detects and handles NullPointerException by displaying "Null element" when the input is null.
