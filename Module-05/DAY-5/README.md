@@ -1,43 +1,96 @@
-# Ex.No:5(E) HAS-A RELATIONSHIP
+# Ex.No:5(E) MULTITHREADING -SYNCHRONIZATION
+
+## QUESTION:
+Use a synchronized block (not method) to safely increment a shared counter using multiple threads.
+
 ## AIM:
-To implement a  Java Program to Find the Largest or Max Number in Array using has - a relationship.
+To write a Java program that uses a synchronized block to safely increment a shared counter using multiple threads and prevent race conditions.
+
 ## ALGORITHM :
-1.	Start the program.
-2.	Create a class ArrayData:
-a.	Declare an integer array and a variable for size.
-b.	Create a method to read array elements from the user.
-3.	Create another class ArrayOperation:
-a.	Create a method findMax() that accepts an ArrayData object.
-b.	Loop through the array and find the largest element.
-4.	In the main() method of a class Main:
-a.	Create an object of ArrayData and read the input.
-b.	Create an object of ArrayOperation and call findMax() by passing the ArrayData object.
-5.	Display the largest number.
-6.	End the program.
+1.Start the program.
+
+2.Create a Counter class with a shared variable count.
+
+3.Create a lock object for synchronization.
+
+4.Define an increment() method that increases count inside a synchronized block.
+
+5.Create a Worker class that extends Thread.
+
+6.Pass the shared Counter object and number of increments to each worker thread.
+
+7.In the run() method, repeatedly call increment().
+
+8.Read the number of threads and increments per thread from the user.
+
+9.Create and start all worker threads.
+
+10.Wait for all threads to finish using join().
+
+11.Display the final value of the counter.
+
+12.Stop the program.
+
 
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement a HAS-A RelationShip
-Developed by: 
-RegisterNumber:  
+Program to implement a Synchronization concept using Java
+Developed by: GIRITHICK ROHAN N 
+RegisterNumber:  212223230063
 */
 ```
 
-## Sourcecode.java:
-
-
-
-
-
-
+## SOURCE CODE:
+```
+import java.util.Scanner;
+class Counter {
+    private int count = 0;
+    private final Object lock = new Object();
+    public void increment() {
+        synchronized (lock) {  
+            count++;
+        }
+    }
+    public int getCount() {
+        return count;
+    }
+}
+class Worker extends Thread {
+    private final Counter counter;
+    private final int increments;
+    public Worker(Counter counter, int increments) {
+        this.counter = counter;
+        this.increments = increments;
+    }
+    public void run() {
+        for (int i = 0; i < increments; i++) {
+            counter.increment();
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Scanner sc = new Scanner(System.in);
+        int numThreads = sc.nextInt();
+        int incrementsPerThread = sc.nextInt();
+        Counter counter = new Counter();
+        Worker[] workers = new Worker[numThreads];
+        for (int i = 0; i < numThreads; i++) {
+            workers[i] = new Worker(counter, incrementsPerThread);
+            workers[i].start();
+        }
+        for (int i = 0; i < numThreads; i++) {
+            workers[i].join();
+        }
+        System.out.println("Final count: " + counter.getCount());
+    }
+}
+```
 
 ## OUTPUT:
-
-
-
+<img width="1265" height="336" alt="image" src="https://github.com/user-attachments/assets/0ba1492c-8993-4971-92ba-a1eb14b658bc" />
 ## RESULT:
-Thus the java program to Find the Largest or Max Number in Array using has - a relationship was executed successfully. 
-
+The program successfully uses a synchronized block to ensure that multiple threads safely increment a shared counter without race conditions.
