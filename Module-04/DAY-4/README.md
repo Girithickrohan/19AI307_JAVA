@@ -1,50 +1,96 @@
-# Ex.No:4(D) FINAL & STATIC IN JAVA
+# Ex.No:4(D) DESIGN PATTERN -- ABSTRACT FACTORY
+
+## QUESTION:
+Create a program that sends different types of notifications: "email", "sms", and "push". Use the Factory Pattern to generate the appropriate notification sender and call its notifyUser() method.
 
 ## AIM:
-   To create a Java program to perform final & static keyword for below situation Employee object contains member 'Emp_Id'. It contains object named name, which contains its own informations such as Fname, Mname, Lname.
- 
+To implement the Factory Design Pattern to send different types of notifications — Email, SMS, and Push.
+
 ## ALGORITHM :
-1.	Start the Program.
-2.	Define class `Name`:
--	a) Declare three `String` variables: `Fname`, `Mname`, and `Lname`
--	b) Define method `dispName(String fn, String mn, String ln)`:
--	i) Print the full name using the passed parameters `fn`, `mn`, and `ln`
-3.	Define class `Employee`:
--	a) Declare an integer variable `Emp_Id`
--	b) Create an instance of `Name` called `obj`
--	c) Define method `disp(int id)`:
--	i) Print the employee ID
--	ii) Create a new `Name` object and call `dispName("B", "Leo", "John")` to display the name
-4.	Define `Main` class with `main` method:
--	a) Create an `Employee` object `emp`
--	b) Call `emp.disp(101)` to display the employee details
-5.	End
-
-
-
-
+1.	Create a Notification interface with the method notifyUser().
+2.	Implement this interface in classes EmailNotification, SMSNotification, and PushNotification.
+3.	Create a NotificationFactory class to generate objects based on input type.
+4.	In main(), read the notification type and get the corresponding object from the factory.
+5.	Call the notifyUser() method to send the notification.
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement a final & Static using Java
-Developed by: 
-RegisterNumber:  
+Program to implement a Abstract Factory Pattern using Java
+Developed by: GIRITHICK ROHAN N 
+RegisterNumber: 212223230063
 */
 ```
 
-## Sourcecode.java:
+## SOURCE CODE:
+```
+import java.util.Scanner;
 
+// Notification interface
+interface Notification {
+    void notifyUser();
+}
 
+// Concrete notifications
+class EmailNotification implements Notification {
+    public void notifyUser() {
+        System.out.println("Sending Email Notification");
+    }
+}
 
+class SMSNotification implements Notification {
+    public void notifyUser() {
+        System.out.println("Sending SMS Notification");
+    }
+}
 
+class PushNotification implements Notification {
+    public void notifyUser() {
+        System.out.println("Sending Push Notification");
+    }
+}
 
+// Factory class
+class NotificationFactory {
+    public Notification createNotification(String type) {
+        switch(type.toLowerCase()) {
+            case "email": return new EmailNotification();
+            case "sms": return new SMSNotification();
+            case "push": return new PushNotification();
+            default: return null;
+        }
+    }
+}
 
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        NotificationFactory factory = new NotificationFactory();
+        
+        while(true) {
+            String input = sc.nextLine();
+            if(input.equalsIgnoreCase("exit")) break;
+
+            Notification notification = factory.createNotification(input);
+            if(notification != null) {
+                notification.notifyUser();
+            } else {
+                System.out.println("Invalid notification type: " + input);
+            }
+        }
+
+        sc.close();
+    }
+}
+
+```
 
 ## OUTPUT:
-
-
+<img width="1284" height="374" alt="image" src="https://github.com/user-attachments/assets/ea1d8e4c-e2a0-40dc-ac41-02cd410c4c07" />
 
 ## RESULT:
-Thus, the java program to perform final & static keyword was executed successfully.
+The program successfully creates and sends the appropriate type of notification using the Factory Pattern.
+
+
